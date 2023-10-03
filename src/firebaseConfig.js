@@ -1,7 +1,7 @@
 /** @format */
-
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBjy56sqk8nJ70ikU1o0k3PTnoXG2zxBFA",
@@ -12,4 +12,6 @@ const firebaseConfig = {
   appId: "1:176565365256:web:2d54457a0a2463138f7fbd",
 };
 const app = initializeApp(firebaseConfig);
+const auth = getAuth();
 const db = getFirestore(app);
+export { auth, db };

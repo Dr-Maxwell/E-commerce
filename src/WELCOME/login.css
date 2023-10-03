@@ -1,0 +1,66 @@
+/** @format */
+
+.container {
+  width: 100vw;
+  padding: 20px;
+  height: 100vh;
+  display: grid;
+  flex-direction: column;
+  justify-content: center;
+
+  /*background: rgb(233, 233, 233);*/
+
+  background-color: rgb(255, 255, 255); /* Fallback color (e.g., white) */
+
+  background: linear-gradient(
+    to bottom right,
+    rgba(7, 172, 10, 0.6) 0%,
+    rgba(7, 172, 10, 0.6) 30%,
+    rgba(255, 112, 7, 0.6) 30%,
+    rgba(255, 112, 7, 0.6) 70%,
+    rgba(7, 172, 10, 0.6) 70%,
+    rgba(7, 172, 10, 0.6) 100%
+  );
+
+  background-size: 200% 200%;
+  background-position: 50% 50%;
+  align-items: center;
+  animation: gradientAnimation 10s infinite alternate;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+@media screen and (max-width: 426px) {
+  .container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    margin: 0px;
+  }
+  .animation {
+    display: none;
+  }
+  .login {
+    display: flex;
+    width: 100%;
+  }
+  img {
+    height: 20px;
+    width: 20px;
+  }
+}
+form {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+}
