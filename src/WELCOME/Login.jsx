@@ -5,14 +5,10 @@ import "./../WELCOME/login.css";
 import logo from "./../../src/logosvg.jpeg";
 import { useState } from "react";
 import { Typography } from "@mui/material";
-//import { Typography } from "@mui/material/styles/createTypography";
 import IconButton from "@mui/material/IconButton";
 import Input from "@mui/material/Input";
-import FilledInput from "@mui/material/FilledInput";
-import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
-import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import Visibility from "@mui/icons-material/Visibility";
@@ -21,16 +17,19 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import FormGroup from "@mui/material/FormGroup";
 import Button from "@mui/material/Button";
-import GoogleIcon from "@mui/icons-material/Google";
 import google from "./../../src/google.png";
 import { Link } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
+import toast from "react-hot-toast";
+import { useContext } from "react";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { AuthContext } from "../Context";
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [Password, setPassword] = useState("");
-  const [email, setEmail] = useState(" ");
-
+  const [Password, setPassword] = useState({ name: " ", field: false });
+  const [email, setEmail] = useState({ name: " ", field: false });
+  const { currentUser } = useContext(AuthContext);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event) => {
@@ -38,16 +37,69 @@ const Login = () => {
   };
   const SignIn = async (e) => {
     e.preventDefault();
+    setEmail((prevState) => ({
+      ...prevState,
+      field: !email.name.trim(),
+    }));
+    setPassword((prevState) => ({
+      ...prevState,
+      field: !Password.name.trim(),
+    }));
+    if (email.field || Password.field) {
+      toast.error(" Please fill all fields", {
+        duration: 6000,
+        position: "bottom-right",
+      });
+      return;
+    }
+
     try {
-      signInWithEmailAndPassword(auth, email, Password);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email.name,
+        Password.name
+      );
+
+      const user = userCredential.user;
+      toast.success("Successfull Login", {
+        duration: 3000,
+        position: "top-right",
+      });
+      setTimeout(() => {
+        user ? (window.location.href = "/home") : " ";
+      }, 4000);
     } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(error);
-      // two ways to this; check if the user never register or invalid entries
+      if (
+        error.code == "auth/invalid-email" ||
+        error.code == "auth/invalid-login-credentials"
+      ) {
+        toast.error("Please enter correct email/password", {
+          position: "bottom-right",
+          duration: 5000,
+        });
+      } else {
+        toast.error("Login failed. Please Register!.", {
+          position: "bottom-right",
+          duration: 5000,
+        });
+      }
     }
   };
-
+  const SignInWithGoogle = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      signInWithPopup(auth, provider).then((result) => {
+        const user = result.user;
+        {
+          user
+            ? (window.location.href = "/home")
+            : (window.location.href = "/register");
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <div className="container">
@@ -85,8 +137,6 @@ const Login = () => {
           </div>
 
           <form
-            onSubmit={SignIn}
-            action="#"
             style={{
               display: "flex",
               justifyContent: "space-evenly",
@@ -96,22 +146,34 @@ const Login = () => {
             <FormControl sx={{ m: 2, width: "50ch" }} variant="standard">
               <TextField
                 onChange={(e) => {
-                  setEmail(e.target.value);
+                  setEmail((prev) => ({
+                    ...prev,
+                    name: e.target.value,
+                    field: false,
+                  }));
                 }}
+                error={email?.field}
+                helperText={email?.field ? "Field is empty." : " "}
                 id="standard-basic"
                 label="Email"
                 variant="standard"
                 required
               />
             </FormControl>
-            <FormControl sx={{ m: 2, width: "50ch" }} variant="standard">
-              <InputLabel
-                htmlFor="standard-adornment-password"
-                required
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-              >
+            <FormControl
+              sx={{ m: 2, width: "50ch" }}
+              variant="standard"
+              onChange={(e) => {
+                setPassword((prev) => ({
+                  ...prev,
+                  name: e.target.value,
+                  field: false,
+                }));
+              }}
+              error={Password?.field}
+              helpertext={Password?.field ? "Field is empty." : " "}
+            >
+              <InputLabel htmlFor="standard-adornment-password" required>
                 Password
               </InputLabel>
               <Input
@@ -151,6 +213,7 @@ const Login = () => {
               </Typography>
             </div>
             <Button
+              onClick={SignIn}
               variant="contained"
               size="large"
               style={{
@@ -166,6 +229,7 @@ const Login = () => {
               or
             </Typography>
             <Button
+              onClick={SignInWithGoogle}
               variant="outlined"
               size="large"
               style={{ width: "300px", borderRadius: "15px", height: "40px" }}

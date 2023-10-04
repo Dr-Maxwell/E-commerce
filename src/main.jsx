@@ -8,12 +8,15 @@ import { CssBaseline } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
 import Login from "./WELCOME/Login.jsx";
 import Registration from "./WELCOME/Registration.jsx";
+import { AuthContextProvider } from "./Context.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <CssBaseline />
     <BrowserRouter>
-      <App />
+      <AuthContextProvider>
+        <App />
+      </AuthContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

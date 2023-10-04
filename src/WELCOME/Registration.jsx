@@ -36,6 +36,11 @@ const Registration = () => {
   const [userEmail, setuserEmail] = useState({ name: " ", field: false });
   const [userState, setuserState] = useState({ name: " ", field: false });
   const [userPassword, setuserPassword] = useState({ name: " ", field: false });
+  //user validation
+  const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  const usernameRegex = /^[a-zA-Z0-9_]{3,20}$/;
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event) => {
@@ -85,36 +90,64 @@ const Registration = () => {
         position: "bottom-right",
       });
       return;
-    } else if (
+    }
+    if (
       userEmail.name.trim() &&
       userName.name.trim() &&
       userState.name.trim() &&
       userPassword.name.trim()
     ) {
-      createUserWithEmailAndPassword(auth, userEmail.name, userPassword.name)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          // Registration successful, show success toast
-          toast.success("Congratulations! You're registered!", {
-            duration: 6000,
-            position: "top-right",
-          });
-          {
-            user
-              ? (window.location.href = "/home")
-              : (window.location.href = "/register");
-          }
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-
-          // Registration failed, show error toast
-          toast.error("You're registered! Sign In", {
-            duration: 6000,
-            position: "top-right",
-          });
+      const isEmailValid = emailRegex.test(userEmail.name);
+      const isPasswordValid = passwordRegex.test(userPassword.name);
+      const isUserNameValid = usernameRegex.test(userName.name);
+      if (!isEmailValid) {
+        toast.error("Please enter the correct email format", {
+          duration: 6000,
+          position: "top-right",
         });
+      } else if (!isUserNameValid) {
+        toast.error(
+          "Username must be 3-20 characters, letters, numbers, or underscores",
+          {
+            duration: 6000,
+            position: "top-right",
+          }
+        );
+      } else if (!isPasswordValid) {
+        toast.error(
+          "Weak password. Must be 8 characters, include uppercase, lowercase, number, and special character",
+          {
+            duration: 6000,
+            position: "top-right",
+          }
+        );
+      } else {
+        createUserWithEmailAndPassword(auth, userEmail.name, userPassword.name)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            // Registration successful, show success toast
+            toast.success("Congratulations! You're registered!", {
+              duration: 2000,
+              position: "top-right",
+            });
+
+            setTimeout(() => {
+              user
+                ? (window.location.href = "/login")
+                : (window.location.href = "/register");
+            }, 3000);
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            // Registration failed, show error toast
+            toast.error("You're registered! Sign In", {
+              duration: 6000,
+              position: "top-right",
+            });
+          });
+      }
     }
   };
 
@@ -166,7 +199,7 @@ const Registration = () => {
                 error={userName?.field}
                 helperText={userName?.field ? "Field is empty." : " "}
                 id="standard-basic"
-                label="Full Name"
+                label="Username"
                 variant="standard"
                 required
                 onChange={(e) => {
