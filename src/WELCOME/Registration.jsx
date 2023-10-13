@@ -9,26 +9,20 @@ import { Typography } from "@mui/material";
 //import { Typography } from "@mui/material/styles/createTypography";
 import IconButton from "@mui/material/IconButton";
 import Input from "@mui/material/Input";
-import FilledInput from "@mui/material/FilledInput";
-import OutlinedInput from "@mui/material/OutlinedInput";
+
 import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
-import FormHelperText from "@mui/material/FormHelperText";
+
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import FormGroup from "@mui/material/FormGroup";
+
 import Button from "@mui/material/Button";
-import GoogleIcon from "@mui/icons-material/Google";
-import google from "./../../src/google.png";
 import { Link, Navigate } from "react-router-dom";
 import { auth } from "../firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import toast from "react-hot-toast";
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -46,21 +40,7 @@ const Registration = () => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-  const SignInWithGoogle = async () => {
-    try {
-      const provider = new GoogleAuthProvider();
-      signInWithPopup(auth, provider).then((result) => {
-        const user = result.user;
-        {
-          user
-            ? (window.location.href = "/home")
-            : (window.location.href = "/register");
-        }
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
   const handleRegistrationAction = () => {
     setuserEmail((prevState) => ({
       ...prevState,
@@ -87,7 +67,7 @@ const Registration = () => {
     ) {
       toast.error(" Please fill all fields", {
         duration: 6000,
-        position: "bottom-right",
+        position: "top-right",
       });
       return;
     }
@@ -154,8 +134,8 @@ const Registration = () => {
   return (
     <>
       <div className="container">
-        <div className="animation"></div>
         <div
+          className="login"
           style={{
             borderRadius: "15px",
             margin: "20px",
@@ -174,6 +154,7 @@ const Registration = () => {
             alt="logo"
           />
           <div
+            className="login"
             style={{
               display: "flex",
               justifyContent: "center",
@@ -181,7 +162,7 @@ const Registration = () => {
               flexDirection: "column",
             }}
           >
-            <Typography variant="h4" color={"gray"}>
+            <Typography variant="h4" color={"gray"} marginTop={"-2rem"}>
               Register Here{" "}
             </Typography>
           </div>
@@ -190,8 +171,9 @@ const Registration = () => {
             action="#"
             style={{
               display: "flex",
-              justifyContent: "space-evenly",
+              justifyContent: "space-around",
               alignItems: "center",
+              marginTop: "-3rem",
             }}
           >
             <FormControl sx={{ m: 2, width: "45ch" }} variant="standard">
@@ -292,22 +274,6 @@ const Registration = () => {
               }}
             >
               Register
-            </Button>
-            <Typography variant="h6" color={"gray"} marginBottom={"1rem"}>
-              or
-            </Typography>
-            <Button
-              onClick={SignInWithGoogle}
-              variant="outlined"
-              size="large"
-              style={{ width: "300px", borderRadius: "15px", height: "40px" }}
-            >
-              <img
-                style={{ width: 15, marginRight: "1rem" }}
-                src={google}
-                alt=""
-              />
-              Sign In With Google
             </Button>
           </form>
           <Typography variant="h6" color={"gray"}>

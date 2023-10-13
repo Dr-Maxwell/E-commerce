@@ -8,3 +8,13 @@
   justify-content: center;
   align-items: center;
 }
+.MuiButtonBase-root {
+  outline: none; /* Remove the default focus outline */
+}
+
+.MuiButton-root:hover,
+.MuiButton-root:active,
+.MuiButton-root:focus {
+  outline: none; /* Remove the default focus outline on hover, active, and focus states */
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Add a custom focus style */
+}

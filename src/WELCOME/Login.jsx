@@ -48,7 +48,7 @@ const Login = () => {
     if (email.field || Password.field) {
       toast.error(" Please fill all fields", {
         duration: 6000,
-        position: "bottom-right",
+        position: "top-right",
       });
       return;
     }
@@ -74,12 +74,12 @@ const Login = () => {
         error.code == "auth/invalid-login-credentials"
       ) {
         toast.error("Please enter correct email/password", {
-          position: "bottom-right",
+          position: "top-right",
           duration: 5000,
         });
       } else {
         toast.error("Login failed. Please Register!.", {
-          position: "bottom-right",
+          position: "top-right",
           duration: 5000,
         });
       }
@@ -104,9 +104,10 @@ const Login = () => {
     <>
       <div className="container">
         <div
+          className="login"
           style={{
             borderRadius: "15px",
-
+            margin: "20px",
             background: "rgb(255,255,255)",
             height: "100%",
             width: "100%",
@@ -141,9 +142,10 @@ const Login = () => {
               display: "flex",
               justifyContent: "space-evenly",
               alignItems: "center",
+              marginTop: "-2rem",
             }}
           >
-            <FormControl sx={{ m: 2, width: "50ch" }} variant="standard">
+            <FormControl sx={{ m: 2, width: "45ch" }} variant="standard">
               <TextField
                 onChange={(e) => {
                   setEmail((prev) => ({
@@ -158,10 +160,11 @@ const Login = () => {
                 label="Email"
                 variant="standard"
                 required
+                autoComplete="off"
               />
             </FormControl>
             <FormControl
-              sx={{ m: 2, width: "50ch" }}
+              sx={{ m: 2, width: "45ch" }}
               variant="standard"
               onChange={(e) => {
                 setPassword((prev) => ({
@@ -177,6 +180,7 @@ const Login = () => {
                 Password
               </InputLabel>
               <Input
+                autoComplete="off"
                 id="standard-adornment-password"
                 type={showPassword ? "text" : "password"}
                 endAdornment={
