@@ -2,7 +2,6 @@
 
 .container {
   width: 100vw;
-  padding: 20px;
   height: 100vh;
   display: grid;
   flex-direction: column;
@@ -52,7 +51,9 @@
     display: flex;
     width: 100vw;
     height: 100vh;
-    border-radius: 0px;
+    border-radius: none;
+    margin: 0px;
+    padding: 15px 0px;
   }
   img {
     height: 20px;
@@ -65,4 +66,12 @@ form {
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
+}
+@media screen and (min-width: 426px) {
+  .login {
+    margin: "20px";
+    border-radius: 15px;
+    padding: 15px;
+    margin: 20px;
+  }
 }

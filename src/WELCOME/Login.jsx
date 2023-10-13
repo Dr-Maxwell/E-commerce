@@ -106,8 +106,6 @@ const Login = () => {
         <div
           className="login"
           style={{
-            borderRadius: "15px",
-            margin: "20px",
             background: "rgb(255,255,255)",
             height: "100%",
             width: "100%",
