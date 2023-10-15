@@ -108,7 +108,7 @@ const Login = () => {
           style={{
             background: "rgb(255,255,255)",
             height: "100%",
-            width: "100%",
+
             display: "flex",
             justifyContent: "space-evenly",
             alignItems: "center",
@@ -196,7 +196,6 @@ const Login = () => {
             </FormControl>
             <div
               style={{
-                width: "420px",
                 color: "gray",
                 display: "flex",
                 justifyContent: "space-evenly",

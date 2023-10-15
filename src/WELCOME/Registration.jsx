@@ -2,7 +2,7 @@
 
 import React from "react";
 import "./../WELCOME/login.css";
-import "./../WELCOME/login.css";
+
 import logo from "./../../src/logosvg.jpeg";
 import { useState } from "react";
 import { Typography } from "@mui/material";
@@ -152,8 +152,8 @@ const Registration = () => {
             alt="logo"
           />
           <div
-            className="login"
             style={{
+              width: "100%",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -169,7 +169,7 @@ const Registration = () => {
             action="#"
             style={{
               display: "flex",
-              justifyContent: "space-around",
+              justifyContent: "space-evenly",
               alignItems: "center",
               marginTop: "-3rem",
             }}
