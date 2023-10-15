@@ -198,17 +198,12 @@ const Login = () => {
               style={{
                 color: "gray",
                 display: "flex",
+                flexDirection: "column-reverse",
                 justifyContent: "space-evenly",
                 alignItems: "center",
                 marginBottom: "2rem",
               }}
             >
-              <FormGroup color="gray">
-                <FormControlLabel
-                  control={<Checkbox />}
-                  label="Remember for 30days"
-                />
-              </FormGroup>
               <Typography variant="h6" color={"gray"}>
                 Forgot password?
               </Typography>
@@ -222,6 +217,7 @@ const Login = () => {
                 borderRadius: "15px",
                 height: "40px",
                 marginBottom: "1rem",
+                ...(window.innerWidth < 600 && { height: "40px" }),
               }}
             >
               LOGIN
@@ -233,7 +229,12 @@ const Login = () => {
               onClick={SignInWithGoogle}
               variant="outlined"
               size="large"
-              style={{ width: "300px", borderRadius: "15px", height: "40px" }}
+              style={{
+                width: "300px",
+                borderRadius: "15px",
+                height: "40px",
+                ...(window.innerWidth < 600 && { height: "40px" }),
+              }}
             >
               <img
                 style={{ width: 15, marginRight: "1rem" }}

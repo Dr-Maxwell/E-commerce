@@ -3,7 +3,7 @@
 .container {
   width: 100vw;
   height: 100vh;
-  display: grid;
+  display: flex;
   flex-direction: column;
   justify-content: center;
 
@@ -35,10 +35,8 @@
     background-position: 100% 100%;
   }
 }
-@media screen and (max-width: 426px) {
+@media screen and (max-width: 600px) {
   .container {
-    width: 100vw;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;

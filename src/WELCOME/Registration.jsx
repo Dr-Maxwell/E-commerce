@@ -269,6 +269,7 @@ const Registration = () => {
                 borderRadius: "15px",
                 height: "40px",
                 marginBottom: "1rem",
+                ...(window.innerWidth < 600 && { height: "40px" }),
               }}
             >
               Register
