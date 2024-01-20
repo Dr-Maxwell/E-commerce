@@ -13,12 +13,9 @@ import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import FormGroup from "@mui/material/FormGroup";
 import Button from "@mui/material/Button";
 import google from "./../../src/google.png";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import toast from "react-hot-toast";
@@ -31,7 +28,6 @@ const Login = () => {
   const [email, setEmail] = useState({ name: " ", field: false });
   const { currentUser } = useContext(AuthContext);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
@@ -66,7 +62,7 @@ const Login = () => {
         position: "top-right",
       });
       setTimeout(() => {
-        user ? (window.location.href = "/home") : " ";
+        currentUser ? (window.location.href = "/") : " ";
       }, 4000);
     } catch (error) {
       if (
@@ -92,7 +88,7 @@ const Login = () => {
         const user = result.user;
         {
           user
-            ? (window.location.href = "/home")
+            ? (window.location.href = "/")
             : (window.location.href = "/register");
         }
       });

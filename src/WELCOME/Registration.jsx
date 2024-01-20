@@ -276,7 +276,7 @@ const Registration = () => {
             </Button>
           </form>
           <Typography variant="h6" color={"gray"}>
-            You Have Account? <Link to={"/login"}>Sign In</Link>.
+            You Have Account? <Link to="/login">Sign In</Link>.
           </Typography>
         </div>
       </div>

@@ -1,0 +1,11 @@
+/** @format */
+
+:root {
+  --primaryColor: rgb(0, 62, 41);
+  --productBg: rgb(245, 246, 246);
+  --textColor: rgb(255, 130, 38);
+  --rating: rgb(8, 172, 10);
+}
+.hoverEffect {
+  color: rgb(171, 79, 79);
+}

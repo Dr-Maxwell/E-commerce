@@ -1,0 +1,22 @@
+/** @format */
+
+@media screen and (min-width: 700px) {
+  .quickLinks {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    position: static; /* Use 'static' instead of 'fixed' or 'absolute' */
+
+    top: 0;
+    right: 0; /* Remove the right property */
+    transform: none; /* Remove the transform property */
+  }
+
+  .quickLinks > ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

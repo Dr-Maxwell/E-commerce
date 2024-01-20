@@ -13,10 +13,9 @@ import { AuthContextProvider } from "./Context.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <CssBaseline />
-    <BrowserRouter>
-      <AuthContextProvider>
-        <App />
-      </AuthContextProvider>
-    </BrowserRouter>
+
+    <AuthContextProvider>
+      <App />
+    </AuthContextProvider>
   </React.StrictMode>
 );
