@@ -5,7 +5,12 @@
   --productBg: rgb(245, 246, 246);
   --textColor: rgb(255, 130, 38);
   --rating: rgb(8, 172, 10);
+  --landingBg: rgb(165, 211, 230);
+  --landingBgBottom: rgb(193, 173, 143);
+  --landingBgWall: rgb(167, 201, 215);
+  --sectionBg: rgb(251, 240, 228);
 }
 .hoverEffect {
   color: rgb(171, 79, 79);
+  color: rgb(158, 156, 156);
 }

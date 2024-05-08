@@ -5,6 +5,8 @@ import "./../WELCOME/Home.css";
 import Nav from "./Nav";
 import { AuthContext } from "../Context";
 import { Header } from "./Header";
+import LandingPage from "./LandingPage";
+import FilterComponent from "./FilterComponent";
 const Home = () => {
   const { currentUser } = useContext(AuthContext);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -51,6 +53,8 @@ const Home = () => {
       >
         <Header />
         <Nav size={windowWidth} />
+        <LandingPage />
+        <FilterComponent />
       </div>
     </div>
   );

@@ -1,0 +1,20 @@
+/** @format */
+
+.logo_animation {
+  width: 100%;
+  height: 100%;
+  animation: moveLogo 12s ease-in-out infinite; /* Adjust animation duration as needed */
+}
+
+@keyframes moveLogo {
+  0%,
+  100% {
+    transform: translateX(0); /* Start and end at original position */
+  }
+  25% {
+    transform: translateX(30px); /* Move 60px to the right */
+  }
+  75% {
+    transform: translateX(-10px); /* Move 60px to the left */
+  }
+}
