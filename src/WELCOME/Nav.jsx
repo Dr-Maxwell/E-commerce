@@ -41,7 +41,12 @@ const Nav = ({ size }) => {
         alignItems: "center",
         padding: "0px 10px 0px 10px",
         color: "var(--primaryColor)",
-        position: "relative",
+        position: "absolute",
+        marginTop: "60px",
+        background: "white",
+        // backgroundColor: "black", // Semi-transparent black background
+        // boxShadow: "0 2px 4px rgba(0, 0, 0, 0.5)",
+
         //boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)",
       }}
     >
@@ -237,8 +242,8 @@ const Nav = ({ size }) => {
                 maxHeight: "130px",
                 position: "absolute",
                 left: "0",
-                gap: "1.2rem",
-                top: "55px",
+                gap: "0.8rem",
+                top: "40px",
                 opacity: showLoginLogout ? 1 : 0,
                 transition: "opacity 1.05s ease",
                 zIndex: "100",

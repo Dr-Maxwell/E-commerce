@@ -1,18 +1,47 @@
 /** @format */
-
-import { Stack } from "@mui/material";
 import React from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import "./../../src/style.css";
-
+import { useContext } from "react";
+import { AuthContext } from "../Context";
 const FilterComponent = () => {
+  const [brand, setBrand] = React.useState("");
   const [age, setAge] = React.useState("");
-
+  const [priceRange, setPriceRange] = React.useState("");
+  const [color, setColor] = React.useState("");
+  const [sortBy, setSortBy] = React.useState("");
+  const { handleUserChoice } = useContext(AuthContext);
   const handleChange = (event) => {
-    setAge(event.target.value);
+    const { name, value } = event.target;
+    switch (name) {
+      case "brand":
+        setBrand((value) => value);
+        handleUserChoice(value, name);
+
+        break;
+      case "age":
+        setAge((value) => value);
+        handleUserChoice(value, name);
+        break;
+      case "priceRange":
+        setPriceRange((value) => value);
+        handleUserChoice(value, name);
+
+        break;
+      case "color":
+        setColor((value) => value);
+        handleUserChoice(value);
+        break;
+      case "sortBy":
+        setSortBy((value) => value);
+        handleUserChoice(value, name);
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -46,24 +75,24 @@ const FilterComponent = () => {
             Brand
           </InputLabel>
           <Select
-            labelId="demo-simple-select-helper-label"
-            id="demo-simple-select-helper"
-            value={age}
-            label="Age"
+            labelId="brand-label"
+            id="brand-select"
+            value={brand}
+            name="brand"
+            onChange={handleChange}
             style={{
               height: "30px",
               padding: "0",
               background: "var(--productBg)",
               borderRadius: "20px",
-            }} // Adjust the height here
-            onChange={handleChange}
+            }}
           >
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={10}>Oraimo</MenuItem>
-            <MenuItem value={20}>Immutable</MenuItem>
-            <MenuItem value={30}>Space X</MenuItem>
+            <MenuItem value="Oraimo">Oraimo</MenuItem>
+            <MenuItem value="Apple">Apple</MenuItem>
+            <MenuItem value="Blackview">Blackview</MenuItem>
           </Select>
         </FormControl>
         <FormControl
@@ -81,13 +110,14 @@ const FilterComponent = () => {
             labelId="demo-simple-select-helper-label"
             id="demo-simple-select-helper"
             value={age}
+            name="age"
             label="Age"
             style={{
               height: "30px",
               padding: "0",
               background: "var(--productBg)",
               borderRadius: "20px",
-            }} // Adjust the height here
+            }}
             onChange={handleChange}
           >
             <MenuItem value="">
@@ -113,23 +143,23 @@ const FilterComponent = () => {
           <Select
             labelId="demo-simple-select-helper-label"
             id="demo-simple-select-helper"
-            value={age}
-            label="Age"
+            value={priceRange}
+            name="priceRange"
+            label="Price Range"
             style={{
               height: "30px",
               padding: "0",
               background: "var(--productBg)",
               borderRadius: "20px",
-            }} // Adjust the height here
+            }}
             onChange={handleChange}
           >
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={10}>$10-40</MenuItem>
-            <MenuItem value={20}>$50-100</MenuItem>
-            <MenuItem value={30}>$100-170</MenuItem>
-            <MenuItem value={40}>$200 above</MenuItem>
+            <MenuItem value="50-100">$50-100</MenuItem>
+            <MenuItem value="100-150">$100-150</MenuItem>
+            <MenuItem value="150-200">$150-200</MenuItem>
           </Select>
         </FormControl>
         <FormControl
@@ -146,7 +176,8 @@ const FilterComponent = () => {
           <Select
             labelId="demo-simple-select-helper-label"
             id="demo-simple-select-helper"
-            value={age}
+            value={color}
+            name="color"
             label="Age"
             style={{
               height: "30px",
@@ -159,10 +190,9 @@ const FilterComponent = () => {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={10}>Red</MenuItem>
-            <MenuItem value={20}>Black</MenuItem>
-            <MenuItem value={30}>Pink</MenuItem>
-            <MenuItem value={30}>White</MenuItem>
+            <MenuItem value="white">White</MenuItem>
+            <MenuItem value="black">Black</MenuItem>
+            <MenuItem value="other">Others</MenuItem>
           </Select>
         </FormControl>
       </div>
@@ -181,7 +211,8 @@ const FilterComponent = () => {
           <Select
             labelId="demo-simple-select-helper-label"
             id="demo-simple-select-helper"
-            value={age}
+            value={sortBy}
+            name="sortBy"
             label="Age"
             style={{
               height: "30px",
@@ -194,9 +225,9 @@ const FilterComponent = () => {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={10}>Brand</MenuItem>
-            <MenuItem value={20}>Price</MenuItem>
-            <MenuItem value={30}>color</MenuItem>
+            <MenuItem value="Brand">Brand</MenuItem>
+            <MenuItem value="Price">Price</MenuItem>
+            <MenuItem value="Color">color</MenuItem>
           </Select>
         </FormControl>
       </div>

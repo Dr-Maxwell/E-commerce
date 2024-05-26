@@ -2,7 +2,7 @@
 
 :root {
   --primaryColor: rgb(0, 62, 41);
-  --productBg: rgb(245, 246, 246);
+  --productBg: rgba(245, 246, 246, 0.779);
   --textColor: rgb(255, 130, 38);
   --rating: rgb(8, 172, 10);
   --landingBg: rgb(165, 211, 230);
@@ -13,4 +13,25 @@
 .hoverEffect {
   color: rgb(171, 79, 79);
   color: rgb(158, 156, 156);
+}
+.btn:hover {
+  background: var(--primaryColor);
+  color: white;
+}
+.productImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0); /* Initially transparent */
+  transition: background-color 0.3s ease;
+}
+.productImg:hover.overlay {
+  background-color: rgba(0, 0, 0, 0.5);
 }

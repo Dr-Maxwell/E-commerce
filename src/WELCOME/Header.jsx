@@ -16,6 +16,9 @@ export const Header = () => {
         minHeight: "50px",
         padding: "5px",
         zIndex: "1",
+        width: "100vw",
+        position: "absolute",
+        top: "0",
       }}
     >
       <div

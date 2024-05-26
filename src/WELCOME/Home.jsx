@@ -7,6 +7,7 @@ import { AuthContext } from "../Context";
 import { Header } from "./Header";
 import LandingPage from "./LandingPage";
 import FilterComponent from "./FilterComponent";
+import Product from "../LANDINGPAGE/Product";
 const Home = () => {
   const { currentUser } = useContext(AuthContext);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -36,25 +37,42 @@ const Home = () => {
     <div
       style={{
         width: "100vw",
-        height: "100vh",
         display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
       }}
     >
       <div
-        className="homeCon"
         style={{
-          display: "flex",
-          flexDirection: "column",
-          Width: "100vw",
-          height: "100vh",
+          width: "100%",
+          position: "fixed",
+          top: "0",
+          right: "0",
+          zIndex: "100",
+          backgroundColor: "white",
         }}
       >
         <Header />
         <Nav size={windowWidth} />
+      </div>
+
+      <div
+        className="homeCon"
+        style={{
+          display: "flex",
+          marginTop: "150px", // Ensure this matches the height of your fixed header/nav
+          flexDirection: "column",
+          width: "100vw",
+          justifyContent: "center",
+          alignItems: "center",
+          overflow: "hidden",
+          // overflowY: "scroll", // Enable scrolling
+        }}
+      >
         <LandingPage />
         <FilterComponent />
+        <Product />
       </div>
     </div>
   );
