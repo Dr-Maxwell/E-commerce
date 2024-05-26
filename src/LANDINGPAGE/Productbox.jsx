@@ -2,7 +2,6 @@
 
 import React from "react";
 import "./../../src/style.css";
-import { simulateProductData } from "../HOOKS/SimulateProduct";
 import Handbag from "./../../src/handbag.jpeg";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
