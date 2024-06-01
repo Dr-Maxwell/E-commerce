@@ -10,13 +10,34 @@
   --landingBgWall: rgb(167, 201, 215);
   --sectionBg: rgb(251, 240, 228);
 }
+.AddSubBtn span {
+  width: 60px;
+  margin-left: 3px;
+  cursor: pointer;
+}
 .hoverEffect {
   color: rgb(171, 79, 79);
   color: rgb(158, 156, 156);
 }
+.btn {
+  text-decoration: none;
+  color: black;
+  width: 100%;
+  height: 100%;
+}
+.btn-n {
+  text-decoration: none;
+  color: black;
+}
 .btn:hover {
   background: var(--primaryColor);
   color: white;
+  border: none;
+}
+.btn-n:hover {
+  background: var(--primaryColor);
+  color: white;
+  border: none;
 }
 .productImg img {
   width: 100%;
@@ -34,4 +55,41 @@
 }
 .productImg:hover.overlay {
   background-color: rgba(0, 0, 0, 0.5);
+}
+.ColorCon {
+  display: flex;
+  gap: 1rem;
+}
+
+.circle {
+  position: relative;
+  width: 45px;
+  height: 45px;
+  overflow: hidden;
+  border-radius: 50%;
+  padding: 1rem;
+}
+.circle:hover {
+  border: 3px solid black;
+}
+.circle .top-half,
+.circle .bottom-half {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  left: 0;
+}
+
+.top-half {
+  top: 0;
+  background-color: red;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+}
+
+.bottom-half {
+  bottom: 0;
+  background-color: blue;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
 }

@@ -1,12 +1,13 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import "./../../src/style.css";
 import Handbag from "./../../src/handbag.jpeg";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import { AuthContext } from "../Context";
 import { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Productbox = () => {
   const [filteredUIProduct, setfilteredUIProduct] = React.useState([]);
@@ -14,6 +15,9 @@ const Productbox = () => {
   useEffect(() => {
     setfilteredUIProduct(filteredProducts);
   }, [filteredProducts]);
+  const addProductToCart = (e) => {
+    console.log(e.target.id);
+  };
   return (
     <div
       className="productbox"
@@ -92,15 +96,27 @@ const Productbox = () => {
             </Box>
             <div>
               <button
-                className="btn"
+                className="btn-n"
+                //disabled={diabledBtn}
+                id={product.productId}
                 style={{
                   height: "30px",
                   width: "100px",
                   borderRadius: "10px",
+
                   border: "1px solid black",
                 }}
+                onClick={(e) => {
+                  addProductToCart(e);
+                }}
               >
-                Add to Cart
+                <Link
+                  className="btn"
+                  to={`/product/${product.productId}/${product.productName}`}
+                >
+                  {" "}
+                  Purchase
+                </Link>
               </button>
             </div>
           </div>

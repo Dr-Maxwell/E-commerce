@@ -31,7 +31,6 @@ export const AuthContextProvider = ({ children }) => {
         return Object.values(product).includes(userChoice);
       });
     }
-    console.log(filteredproduct);
     setFilteredProducts(filteredproduct);
   };
   useEffect(() => {

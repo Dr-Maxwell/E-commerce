@@ -214,7 +214,6 @@ const Nav = ({ size }) => {
             style={{
               display: "flex",
               flexDirection: "column",
-
               position: "relative",
             }}
           >
