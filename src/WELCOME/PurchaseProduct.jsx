@@ -6,8 +6,18 @@ import sneaker from "./../sneaker.jpg";
 import "./../../src/style.css";
 import Rating from "@mui/material/Rating";
 import { products } from "../LANDINGPAGE/productdata";
+import { PaystackButton } from "react-paystack";
 export const PurchaseProduct = () => {
-  const [purchaseproduct, setpurchaseProduct] = useState([]);
+  const [purchaseproduct, setPurchaseProduct] = useState(null);
+  const [price, setPrice] = useState(0);
+  const [itemNum, setItemNum] = useState(1);
+  const [Config, setConfig] = useState({
+    reference: new Date().getTime().toString(),
+    email: "samuelbodun4real@gmail.com",
+    amount: 0,
+    publicKey: "pk_test_9e832f29de1072b017dfaea20223f0f606b4ad54",
+    text: "Buy now",
+  });
   const { id } = useParams();
 
   useEffect(() => {
@@ -15,12 +25,35 @@ export const PurchaseProduct = () => {
       return product.productId == id;
     });
     if (purchased.length > 0) {
-      setpurchaseProduct(purchased[0]);
+      setPurchaseProduct(purchased[0]);
+      const initialPrice = purchased[0].productPrice;
+      setPrice(initialPrice);
+      setConfig((prev) => ({
+        ...prev,
+        amount: initialPrice * 1500 * 100,
+      }));
     }
-  }, [id]);
+  }, [id, price]);
   if (!purchaseproduct) {
     return <div>Loading...</div>;
   }
+  const evaluatePrice = (action) => {
+    let itemNo = itemNum;
+    if (action === "add") {
+      itemNo += 1;
+    } else if (action === "subtract" && itemNum > 0) {
+      itemNo -= 1;
+    }
+    setItemNum(itemNo);
+    const newPrice = itemNum * purchaseproduct.productPrice;
+    console.log(itemNum);
+    setPrice(newPrice.toLocaleString());
+    setConfig((prev) => ({
+      ...prev,
+      amount: newPrice * 1500 * 100,
+    }));
+  };
+
   return (
     <div
       style={{
@@ -136,7 +169,7 @@ export const PurchaseProduct = () => {
           justifyContent: "space-between",
           gap: "1rem",
           flexDirection: "column",
-          paddingTop: "3rem",
+          paddingTop: "7rem",
           //background: "var(--productBg)",
         }}
       >
@@ -168,7 +201,7 @@ export const PurchaseProduct = () => {
         >
           <div>{`$${purchaseproduct.productPrice} or $${(
             purchaseproduct.productPrice / 6
-          ).toFixed(2)}`}</div>
+          ).toFixed(2)} per month`}</div>
           <p style={{ color: "gray" }}>
             Suggested payment with 6 month special finacing
           </p>
@@ -251,9 +284,9 @@ export const PurchaseProduct = () => {
                 padding: "1rem",
               }}
             >
-              <span>-</span>
-              <span>2</span>
-              <span>+</span>
+              <span onClick={() => evaluatePrice("subtract")}>-</span>
+              <span>{itemNum}</span>
+              <span onClick={() => evaluatePrice("add")}>+</span>
             </div>
             <div
               style={{
@@ -281,18 +314,10 @@ export const PurchaseProduct = () => {
               style={{
                 borderRadius: "10px",
                 width: "120px",
+                height: "30px",
               }}
             >
-              <button
-                className="btn"
-                style={{
-                  borderRadius: "10px",
-                  height: "30px",
-                  width: "120px",
-                }}
-              >
-                Buy now
-              </button>
+              <PaystackButton className="btn" {...Config} />
             </div>
             <div
               className="btn"
@@ -314,12 +339,12 @@ export const PurchaseProduct = () => {
             </div>
           </div>
         </div>
-        <div
+        <h3
           style={{ width: "550px", textAlign: "end" }}
           className="totalPurchase"
         >
-          TOTAL PRICE: $900.00
-        </div>
+          {`TOTAL PRICE: $${price}`}
+        </h3>
 
         <div></div>
       </div>
