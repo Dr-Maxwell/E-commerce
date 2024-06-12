@@ -5,8 +5,13 @@ import { Outlet } from "react-router-dom";
 import Nav from "./Nav";
 import { Header } from "./Header";
 import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../Context";
+import Login from "./Login";
 export const GeneralLayout = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const { currentUser } = useContext(AuthContext);
+  console.log(currentUser);
   const updateWindowWidth = () => {
     setWindowWidth(window.innerWidth);
   };
@@ -24,6 +29,7 @@ export const GeneralLayout = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  if (!currentUser) return <Login />;
   return (
     <div
       style={{

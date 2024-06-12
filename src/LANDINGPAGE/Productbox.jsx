@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import "./../../src/style.css";
-import Handbag from "./../../src/handbag.jpeg";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import { AuthContext } from "../Context";
@@ -42,16 +41,23 @@ const Productbox = () => {
             borderRadius: "10px",
             justifyContent: "space-between",
             overflow: "clip",
+            border: "1px solid gray",
           }}
           key={product.productId}
           className="product-item"
         >
           <div
             className="productImg"
-            style={{ height: "150px", width: "150px", position: "relative" }}
+            style={{
+              height: "150px",
+              width: "150px",
+              position: "relative",
+              objectFit: "contain",
+              objectPosition: "center",
+            }}
           >
             <img
-              src={Handbag}
+              src={product.productImg}
               alt="product Img"
               // style={{ height: "150px", width: "150px" }}
             />

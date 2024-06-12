@@ -10,8 +10,8 @@ export const products = [
     productBrand: "Apple",
     productColor: "black",
     productPrice: "100",
-    productRating: "4",
-    productImg: "./../IMAGES/airpod-5-apple-black.png",
+    productRating: "3",
+    productImg: "/images/airpod_5_apple_black.png",
   },
   {
     productName: "Oraimo AirBuds 4",
@@ -23,7 +23,7 @@ export const products = [
     productColor: "black",
     productPrice: "100",
     productRating: "4",
-    productImg: "./../IMAGES/earbud-1-oraimo-black.jpeg",
+    productImg: "/images/earbud_1_oraimo_black.jpeg",
   },
   {
     productName: "Apple EarPods",
@@ -34,8 +34,8 @@ export const products = [
     productBrand: "Apple",
     productColor: "white",
     productPrice: "200",
-    productRating: "4",
-    productImg: "./../IMAGES/earbud-3-apple-white.jpeg",
+    productRating: "5",
+    productImg: "/images/earbud_3_apple_white.jpeg",
   },
   {
     productName: "Apple EarPods",
@@ -46,8 +46,8 @@ export const products = [
     productBrand: "Apple",
     productColor: "black",
     productPrice: "70",
-    productRating: "4",
-    productImg: "./../IMAGES/earbud-4-apple-black.jpeg",
+    productRating: "5",
+    productImg: "/images/earbud_4_apple_black.jpeg",
   },
   {
     productName: "Oraimo AirBuds 3",
@@ -58,8 +58,8 @@ export const products = [
     productBrand: "Oraimo",
     productColor: "black",
     productPrice: "50",
-    productRating: "4",
-    productImg: "./../IMAGES/earpod-2-oraimo-black.jpg",
+    productRating: "2.5",
+    productImg: "/images/earpod_2_oraimo_black.jpg",
   },
   {
     productName: "Blackview AirBuds ",
@@ -71,7 +71,7 @@ export const products = [
     productColor: "black",
     productPrice: "80",
     productRating: "4",
-    productImg: "./../IMAGES/earpod-5-blackview-black.png",
+    productImg: "/images/earpod_5_blackview_black.png",
   },
   {
     productName: "AirBuds 4 Pro",
@@ -82,8 +82,8 @@ export const products = [
     productBrand: "Blackview",
     productColor: "black",
     productPrice: "200",
-    productRating: "5",
-    productImg: "./../IMAGES/earpod-6-blackview-black.jpg",
+    productRating: "3",
+    productImg: "/images/earpod_6_blackview_black.jpg",
   },
   {
     productName: "Bluetooth 5.0 Headphone",
@@ -95,7 +95,7 @@ export const products = [
     productColor: "other",
     productPrice: "150",
     productRating: "4",
-    productImg: "./../IMAGES/headset-1-oraimo-green.png",
+    productImg: "/images/headset_1_oraimo_green.png",
   },
   {
     productName: "Sound Play",
@@ -106,8 +106,8 @@ export const products = [
     productBrand: "Apple",
     productColor: "white",
     productPrice: "150",
-    productRating: "4",
-    productImg: "./../IMAGES/headset-2-apple-white.jpg",
+    productRating: "2.5",
+    productImg: "/images/headset_2_apple_white.jpg",
   },
   {
     productName: "VT USD-Headset",
@@ -118,8 +118,8 @@ export const products = [
     productBrand: "Blackview",
     productColor: "white",
     productPrice: "80",
-    productRating: "4",
-    productImg: "./../IMAGES/headset-2-blackview-white.jpg",
+    productRating: "1",
+    productImg: "/images/headset_2_blackview_white.jpg",
   },
   {
     productName: "Bluetooth 5.0 Headphone",
@@ -130,8 +130,8 @@ export const products = [
     productBrand: "Oraimo",
     productColor: "black",
     productPrice: "100",
-    productRating: "4",
-    productImg: "./../IMAGES/headset-2-oraimo-black.jpeg",
+    productRating: "2",
+    productImg: "/images/headset_2_oraimo_black.jpeg",
   },
   {
     productName: "Bluetooth 3.0 Headphone",
@@ -142,8 +142,8 @@ export const products = [
     productBrand: "Blackview",
     productColor: "black",
     productPrice: "100",
-    productRating: "4",
-    productImg: "./../IMAGES/headset-3-oraimo-black.jpg",
+    productRating: "3",
+    productImg: "/images/headset_3_oraimo_black.jpg",
   },
   {
     productName: "Shure Sound Max",
@@ -155,7 +155,7 @@ export const products = [
     productColor: "black",
     productPrice: "100",
     productRating: "4",
-    productImg: "./../IMAGES/headset-3-oraimo-black.jpg",
+    productImg: "/images/headset_3_oraimo_black.jpg",
   },
   {
     productName: "Bluetooth 5.0 Studio",
@@ -166,8 +166,8 @@ export const products = [
     productBrand: "Apple",
     productColor: "other",
     productPrice: "200",
-    productRating: "5",
-    productImg: "./../IMAGES/headset-4-apple-gold.jpg",
+    productRating: "3.5",
+    productImg: "/images/headset_4_apple_gold.jpg",
   },
   {
     productName: "Blackview Headphone Pro",
@@ -178,8 +178,8 @@ export const products = [
     productBrand: "Blackview",
     productColor: "other",
     productPrice: "200",
-    productRating: "4",
-    productImg: "./../IMAGES/headset-5-blackview-blue.png",
+    productRating: "4.5",
+    productImg: "/images/headset_5_blackview_blue.png",
   },
 
   {
@@ -191,8 +191,8 @@ export const products = [
     productBrand: "Blackview",
     productColor: "other",
     productPrice: "170",
-    productRating: "4",
-    productImg: "./../IMAGES/headset_6_blackview_pink.jpeg",
+    productRating: "3",
+    productImg: "/images/headset_6_blackview_pink.jpeg",
   },
 
   {
@@ -204,8 +204,8 @@ export const products = [
     productBrand: "Apple",
     productColor: "white",
     productPrice: "180",
-    productRating: "5",
-    productImg: "./../IMAGES/headset_7_apple_white.jpeg",
+    productRating: "4",
+    productImg: "/images/headset_7_apple_white.jpeg",
   },
   {
     productName: "Blackview Headphone Pro",
@@ -216,7 +216,7 @@ export const products = [
     productBrand: "Blackview",
     productColor: "other",
     productPrice: "160",
-    productRating: "5",
-    productImg: "./../IMAGES/headset_9_blackview_gray.jpeg",
+    productRating: "3.5",
+    productImg: "/images/headset_7_apple_white.jpeg",
   },
 ];

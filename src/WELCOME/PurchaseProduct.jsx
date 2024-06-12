@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import sneaker from "./../sneaker.jpg";
+import toast from "react-hot-toast";
 import "./../../src/style.css";
 import Rating from "@mui/material/Rating";
 import { products } from "../LANDINGPAGE/productdata";
@@ -33,7 +33,7 @@ export const PurchaseProduct = () => {
         amount: initialPrice * 1500 * 100,
       }));
     }
-  }, [id, price]);
+  }, [id]);
   if (!purchaseproduct) {
     return <div>Loading...</div>;
   }
@@ -41,12 +41,21 @@ export const PurchaseProduct = () => {
     let itemNo = itemNum;
     if (action === "add") {
       itemNo += 1;
-    } else if (action === "subtract" && itemNum > 0) {
+      toast.success(`Successfully added ${itemNo} items`, {
+        duration: 3000,
+        position: "top-right",
+      });
+      //setItemNum((prev) => prev + 1);
+    } else if (action === "subtract" && itemNo > 1) {
       itemNo -= 1;
+      toast.success(`You have ${itemNo} items remaining`, {
+        duration: 3000,
+        position: "top-right",
+      });
+      //setItemNum((prev) => prev - 1);
     }
+    const newPrice = itemNo * purchaseproduct.productPrice;
     setItemNum(itemNo);
-    const newPrice = itemNum * purchaseproduct.productPrice;
-    console.log(itemNum);
     setPrice(newPrice.toLocaleString());
     setConfig((prev) => ({
       ...prev,
@@ -86,7 +95,10 @@ export const PurchaseProduct = () => {
             paddingTop: "2rem",
           }}
         >
-          <img style={{ height: "400px", width: "550px" }} src={sneaker} />
+          <img
+            style={{ height: "400px", width: "550px" }}
+            src={purchaseproduct.productImg}
+          />
         </div>
         <div
           style={{
@@ -107,7 +119,7 @@ export const PurchaseProduct = () => {
           >
             <img
               style={{ height: "90px", width: "110px" }}
-              src={sneaker}
+              src={purchaseproduct.productImg}
               alt=""
             />
           </div>
@@ -123,7 +135,7 @@ export const PurchaseProduct = () => {
           >
             <img
               style={{ height: "90px", width: "110px" }}
-              src={sneaker}
+              src={purchaseproduct.productImg}
               alt=""
             />
           </div>
@@ -139,7 +151,7 @@ export const PurchaseProduct = () => {
           >
             <img
               style={{ height: "90px", width: "110px" }}
-              src={sneaker}
+              src={purchaseproduct.productImg}
               alt=""
             />
           </div>
@@ -155,7 +167,7 @@ export const PurchaseProduct = () => {
           >
             <img
               style={{ height: "90px", width: "110px" }}
-              src={sneaker}
+              src={purchaseproduct.productImg}
               alt=""
             />
           </div>

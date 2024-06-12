@@ -5,8 +5,6 @@ import { Button } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import DehazeIcon from "@mui/icons-material/Dehaze";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import logo from "./../../src/logosvg.jpeg";
 import KeyboardArrowUpTwoToneIcon from "@mui/icons-material/KeyboardArrowUpTwoTone";
 import KeyboardArrowDownTwoToneIcon from "@mui/icons-material/KeyboardArrowDownTwoTone";
@@ -22,14 +20,29 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import LoginIcon from "@mui/icons-material/Login";
 import "./../WELCOME/navquicklinks.css";
 import "../WELCOME/logo.css";
+import Userprofile from "./Userprofile";
+import { useContext } from "react";
+import { AuthContext } from "../Context";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebaseConfig";
+import toast from "react-hot-toast";
 const Nav = ({ size }) => {
   const [category, setCategory] = React.useState("");
   const [bool, setBool] = React.useState(false);
   const [showQuickLinks, setShowQuickLinks] = useState(false);
   const [showLoginLogout, setShowLoginLogout] = useState(false);
-
-  const handleAccountClick = () => {
-    setShowLoginLogout((prev) => !prev);
+  const { currentUser } = useContext(AuthContext);
+  const HandleLogoutSession = () => {
+    signOut(auth)
+      .then(() => {
+        toast.success(`Successfully Logout ${currentUser.user.email}`, {
+          duration: 3000,
+          position: "top-right",
+        });
+      })
+      .catch((error) => {
+        // An error happened.
+      });
   };
   return (
     <div
@@ -217,54 +230,17 @@ const Nav = ({ size }) => {
               position: "relative",
             }}
           >
-            {size < 700 ? (
-              <AccountCircleIcon
-                fontSize="large"
-                sx={{ color: "var(--primaryColor)" }}
-                onClick={handleAccountClick}
-              />
+            {currentUser ? (
+              <Userprofile user={currentUser} />
             ) : (
               <Button
                 style={{ color: "var(--primaryColor)" }}
                 startIcon={<AccountCircleIcon />}
-                onClick={handleAccountClick}
+                disabled
               >
                 Account
               </Button>
             )}
-            <div
-              className={`loginLogoutUser ${showLoginLogout ? "visible" : ""}`}
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                flexDirection: "column",
-                maxHeight: "130px",
-                position: "absolute",
-                left: "0",
-                gap: "0.8rem",
-                top: "40px",
-                opacity: showLoginLogout ? 1 : 0,
-                transition: "opacity 1.05s ease",
-                zIndex: "100",
-              }}
-            >
-              <div className="logout">
-                <Button
-                  style={{ color: "var(--primaryColor)" }}
-                  startIcon={<LoginIcon fontSize="large" />}
-                >
-                  Login
-                </Button>
-              </div>
-              <div className="logout">
-                <Button
-                  style={{ color: "var(--primaryColor)" }}
-                  startIcon={<LogoutIcon fontSize="large" />}
-                >
-                  Logout
-                </Button>
-              </div>
-            </div>
           </div>
           <div>
             {size < 700 ? (
@@ -280,6 +256,17 @@ const Nav = ({ size }) => {
                 Cart
               </Button>
             )}
+          </div>
+          <div>
+            <Button
+              style={{ color: "var(--primaryColor)" }}
+              startIcon={<LogoutIcon />}
+              onClick={() => {
+                HandleLogoutSession();
+              }}
+            >
+              LOGOUT
+            </Button>
           </div>
         </div>
       </div>
