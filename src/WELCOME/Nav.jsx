@@ -17,7 +17,6 @@ import Funiture from "./../../src/funiture.jpg";
 import Book from "./../../src/book.jpg";
 import CategoryProduct from "./CategoryProduct";
 import LogoutIcon from "@mui/icons-material/Logout";
-import LoginIcon from "@mui/icons-material/Login";
 import "./../WELCOME/navquicklinks.css";
 import "../WELCOME/logo.css";
 import Userprofile from "./Userprofile";
@@ -27,10 +26,8 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import toast from "react-hot-toast";
 const Nav = ({ size }) => {
-  const [category, setCategory] = React.useState("");
   const [bool, setBool] = React.useState(false);
   const [showQuickLinks, setShowQuickLinks] = useState(false);
-  const [showLoginLogout, setShowLoginLogout] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const HandleLogoutSession = () => {
     signOut(auth)
