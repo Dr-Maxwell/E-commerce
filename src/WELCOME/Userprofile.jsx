@@ -21,8 +21,8 @@ const Userprofile = (currentUser) => {
       </div>
       <div
         style={{
-          textTransform: "capitalize",
-          fontSize: "1.2rem",
+          textTransform: "uppercase",
+          fontSize: "0.8rem",
         }}
       >
         {currentUser.user.providerData[0].displayName

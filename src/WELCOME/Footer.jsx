@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import logo from "./../../src/logosvg.jpeg";
+import logo from "./../../src/WELCOME/footerimg.png";
 import PaymentMethod from "./../../src/WELCOME/paymentmethod.png";
 import "./../../src/style.css";
 const Footer = () => {
@@ -18,6 +18,8 @@ const Footer = () => {
         marginTop: "15rem",
         fontFamily: "Roboto, sans-serif",
         lineHeight: "2.2",
+        background: "black",
+        color: "white",
       }}
     >
       <div
@@ -38,11 +40,10 @@ const Footer = () => {
             alignItems: "center",
             width: "100%",
             gap: "0.5rem",
-            color: "var(--primaryColor)",
           }}
         >
-          <img style={{ width: "40px", height: "40px" }} src={logo} alt="" />
-          <h2> Biot Store</h2>
+          <img style={{ width: "60px", height: "60px" }} src={logo} alt="" />
+          <h2> Biot Store.</h2>
         </div>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam
@@ -84,7 +85,7 @@ const Footer = () => {
             justifyContent: "center",
             alignItems: "center",
             listStyle: "none",
-            color: "black",
+            color: "white",
             gap: "4rem",
           }}
         >

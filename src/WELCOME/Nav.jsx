@@ -19,6 +19,7 @@ import CategoryProduct from "./CategoryProduct";
 import LogoutIcon from "@mui/icons-material/Logout";
 import "./../WELCOME/navquicklinks.css";
 import "../WELCOME/logo.css";
+import Logo from "./../../src/WELCOME/footerimg.png";
 import Userprofile from "./Userprofile";
 import { useContext } from "react";
 import { AuthContext } from "../Context";
@@ -66,11 +67,11 @@ const Nav = ({ size }) => {
         justifyContent: "space-between",
         alignItems: "center",
         padding: "0px 10px 0px 10px",
-        color: "var(--primaryColor)",
+        color: "white",
         position: "absolute",
         marginTop: "60px",
-        background: "white",
-        // backgroundColor: "black", // Semi-transparent black background
+        //background: "white",
+        backgroundColor: "black", // Semi-transparent black background
         // boxShadow: "0 2px 4px rgba(0, 0, 0, 0.5)",
 
         //boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)",
@@ -89,17 +90,16 @@ const Nav = ({ size }) => {
         <div className="logo_animation">
           <img
             style={{
-              width: `${size > 700 ? "70px" : "40px"}`,
-              height: `${size > 700 ? "70px" : "40px"}`,
+              width: `${size > 700 ? "90px" : "40px"}`,
+              height: `${size > 700 ? "90px" : "40px"}`,
             }}
-            src={logo}
+            src={Logo}
             alt=""
           />
         </div>
         <div style={{ textAlign: "left", marginLeft: "1rem" }}>
           <h2
             style={{
-              color: "var(--primaryColor)",
               fontWeight: "bolder",
               margin: 0,
               width: "200px",
@@ -216,7 +216,7 @@ const Nav = ({ size }) => {
               justifyContent: "space-between",
               gap: "1.2rem",
               flexDirection: size > 700 ? "row" : "column",
-              color: "#666", // Adjust the color as needed
+              // Adjust the color as needed
               fontWeight: "lighter",
 
               fontFamily: "Roboto, sans-serif",
@@ -249,7 +249,6 @@ const Nav = ({ size }) => {
             ) : (
               <div
                 style={{
-                  color: "var(--primaryColor)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",
@@ -258,7 +257,6 @@ const Nav = ({ size }) => {
                 <Button
                   component="label"
                   sx={{
-                    color: "var(--primaryColor)",
                     width: "40px",
                     height: "40px",
                     border: "none",
@@ -301,11 +299,11 @@ const Nav = ({ size }) => {
             {size < 700 ? (
               <ShoppingCartOutlinedIcon
                 fontSize="large"
-                sx={{ color: "var(--primaryColor)" }}
+                sx={{ color: "white" }}
               />
             ) : (
               <Button
-                style={{ color: "var(--primaryColor)" }}
+                style={{ color: "white" }}
                 startIcon={<ShoppingCartOutlinedIcon />}
               >
                 Cart
@@ -314,7 +312,7 @@ const Nav = ({ size }) => {
           </div>
           <div>
             <Button
-              style={{ color: "var(--primaryColor)" }}
+              style={{ color: "white" }}
               startIcon={<LogoutIcon />}
               onClick={() => {
                 HandleLogoutSession();
