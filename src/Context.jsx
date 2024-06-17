@@ -20,7 +20,6 @@ export const AuthContextProvider = ({ children }) => {
   const handleUserChoice = (userChoice, name) => {
     let filteredproduct;
     if (name == "priceRange") {
-      console.log(userChoice);
       const { min, max } = extractPriceRange(userChoice);
       filteredproduct = products.filter((product) => {
         const price = Number(product.productPrice);
@@ -36,6 +35,7 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
       setcurrentUser(user);
+      console.log(user);
     });
 
     return () => {

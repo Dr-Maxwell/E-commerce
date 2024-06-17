@@ -28,6 +28,8 @@ import toast from "react-hot-toast";
 const Nav = ({ size }) => {
   const [bool, setBool] = React.useState(false);
   const [showQuickLinks, setShowQuickLinks] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+
   const { currentUser } = useContext(AuthContext);
   const HandleLogoutSession = () => {
     signOut(auth)
@@ -40,6 +42,20 @@ const Nav = ({ size }) => {
       .catch((error) => {
         // An error happened.
       });
+  };
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file && file.type.startsWith("image/")) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSelectedImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      // Handle invalid file type if needed
+      console.error("Please select a valid image file");
+    }
   };
   return (
     <div
@@ -90,7 +106,7 @@ const Nav = ({ size }) => {
               fontSize: `${size > 700 ? " 1.7rem" : "12px"}`,
             }}
           >
-            Spider-X-Max.
+            Biot Store.
           </h2>
         </div>
       </div>
@@ -100,6 +116,7 @@ const Nav = ({ size }) => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          marginLeft: "-110px",
           width: "1200px",
         }}
       >
@@ -227,16 +244,57 @@ const Nav = ({ size }) => {
               position: "relative",
             }}
           >
-            {currentUser ? (
+            {currentUser.photoURL ? (
               <Userprofile user={currentUser} />
             ) : (
-              <Button
-                style={{ color: "var(--primaryColor)" }}
-                startIcon={<AccountCircleIcon />}
-                disabled
+              <div
+                style={{
+                  color: "var(--primaryColor)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
               >
-                Account
-              </Button>
+                <Button
+                  component="label"
+                  sx={{
+                    color: "var(--primaryColor)",
+                    width: "40px",
+                    height: "40px",
+                    border: "none",
+                    outline: "none",
+                    minWidth: "unset",
+                    outlineColor: "none",
+                  }}
+                  style={{
+                    border: "none",
+                    outline: "none",
+                    boxShadow: "none",
+                  }}
+                  startIcon={
+                    selectedImage ? (
+                      <img
+                        src={selectedImage}
+                        style={{
+                          height: "40px",
+                          width: "40px",
+                          borderRadius: "50%",
+                        }}
+                      />
+                    ) : (
+                      <AccountCircleIcon />
+                    )
+                  }
+                >
+                  <input
+                    type="file"
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    onChange={handleImageUpload}
+                  />
+                </Button>
+                <div>{selectedImage ? currentUser.email : "Change Avatar"}</div>
+              </div>
             )}
           </div>
           <div>

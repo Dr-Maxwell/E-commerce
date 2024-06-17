@@ -8,10 +8,10 @@ import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../Context";
 import Login from "./Login";
+import Footer from "./Footer";
 export const GeneralLayout = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const { currentUser } = useContext(AuthContext);
-  console.log(currentUser);
   const updateWindowWidth = () => {
     setWindowWidth(window.innerWidth);
   };
@@ -55,6 +55,9 @@ export const GeneralLayout = () => {
       </div>
       <div>
         <Outlet />
+      </div>
+      <div>
+        <Footer />
       </div>
     </div>
   );

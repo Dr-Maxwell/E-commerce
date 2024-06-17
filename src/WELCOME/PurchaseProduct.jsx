@@ -18,6 +18,7 @@ export const PurchaseProduct = () => {
     publicKey: "pk_test_9e832f29de1072b017dfaea20223f0f606b4ad54",
     text: "Buy now",
   });
+
   const { id } = useParams();
 
   useEffect(() => {

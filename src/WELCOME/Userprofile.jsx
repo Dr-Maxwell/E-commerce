@@ -2,23 +2,33 @@
 
 import React from "react";
 const Userprofile = (currentUser) => {
-  console.log(currentUser);
+  //console.log(currentUser.user.providerData[0].displayName.split(" ")[0]);
   return (
     <div
       style={{
-        dispay: "flex",
+        display: "flex",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "space-between",
+        gap: "2rem",
       }}
     >
       <div>
         <img
-          style={{ height: "40px", width: "40px" }}
-          src={currentUser.user.photoUrl}
+          style={{ height: "40px", width: "40px", borderRadius: "50%" }}
+          src={currentUser.user.photoURL}
           alt="Image"
         />
       </div>
-      <div>{currentUser.user.email}</div>
+      <div
+        style={{
+          textTransform: "capitalize",
+          fontSize: "1.2rem",
+        }}
+      >
+        {currentUser.user.providerData[0].displayName
+          ? currentUser.user.providerData[0].displayName
+          : currentUser.user.email}
+      </div>
     </div>
   );
 };
